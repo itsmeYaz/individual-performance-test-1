@@ -56,20 +56,20 @@ const getPublishedCourses = async (req, res) => {
         }
       });
     });
-    const descriptionsAndTags = courses
+    const descriptionsTagsAndCode = courses
       .filter(
         (course) => course.tags.includes("BSIT") || course.tags.includes("BSIS")
       )
       .map((course) => ({
+        code: course.code,
         description: course.description,
         tags: course.tags,
       }));
-    res.json(descriptionsAndTags);
+    res.json(descriptionsTagsAndCode);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
-
 module.exports = {
   getCoursesSortedByName,
   getCoursesNameAndSpecialization,
