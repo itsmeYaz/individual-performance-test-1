@@ -12,7 +12,12 @@ const getCoursesSortedByName = async (req, res) => {
       });
     });
     courses.sort((a, b) => a.description.localeCompare(b.description));
-    res.json(courses);
+    const courseDetails = courses.map((course) => ({
+      year: course.year,
+      code: course.code,
+      description: course.description,
+    }));
+    res.json(courseDetails);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
