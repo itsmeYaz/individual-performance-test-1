@@ -34,11 +34,12 @@ const getCoursesNameAndSpecialization = async (req, res) => {
         }
       });
     });
-    const descriptionsAndTags = courses.map((course) => ({
+    const descriptionsTagsAndCode = courses.map((course) => ({
+      code: course.code, // added this line
       description: course.description,
       tags: course.tags,
     }));
-    res.json(descriptionsAndTags);
+    res.json(descriptionsTagsAndCode);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
